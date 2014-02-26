@@ -257,9 +257,9 @@ pump elec_in -98.1
 
 
 ```{r methods, echo=FALSE, fig.height = 6, fig.width = 12, fig.align = 'center'}
-library(ggplot2)
-library(grid)
-library(reshape)
+#library(ggplot2)
+#library(grid)
+#library(reshape)
 
 theme_tom <- theme_minimal() + theme(
   legend.title=element_blank(), 

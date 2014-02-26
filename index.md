@@ -227,19 +227,6 @@ pump elec_in -98.1
 ---
 
 
-
-```
-## Find out what's changed in ggplot2 with
-## news(Version == "0.9.3.1", package = "ggplot2")
-## Loading required package: plyr
-## 
-## Attaching package: 'reshape'
-## 
-## The following object(s) are masked from 'package:plyr':
-## 
-##     rename, round_any
-```
-
 <img src="assets/fig/methods.png" title="plot of chunk methods" alt="plot of chunk methods" style="display: block; margin: auto;" />
 
 

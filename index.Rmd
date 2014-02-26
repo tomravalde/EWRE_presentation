@@ -34,8 +34,8 @@ Magesterial.
 -->
 
 ```{r trends, echo=FALSE, fig.height = 6, fig.width = 12, fig.align = 'center'}
-#require(ggplot2)
-#require(grid)
+require(ggplot2)
+require(grid)
 
 data <- read.csv("world_total_urban.csv")
 data <- data[-45, ]

@@ -33,14 +33,7 @@ Magesterial.
 <q>the world is still in the midst of a sweeping and profound urban transformation that is literally changing the face of the planet.</q>
 -->
 
-
-```
-## Error: could not find function "ggplot"
-```
-
-```
-## Error: object 'fig.Trends' not found
-```
+<img src="assets/fig/trends.png" title="plot of chunk trends" alt="plot of chunk trends" style="display: block; margin: auto;" />
 
 <figcaption><centre>UN urbanisation forecasts</centre>
 </figcaption>

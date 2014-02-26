@@ -1,0 +1,336 @@
+---
+title       : Highly integrated urban energy, water and waste resources
+subtitle    : EWRE Seminar, 26 February 2014
+author      : Tom Ravalde
+job	    : "Supervisor: Dr James Keirstead"
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : mathjax       # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+--- 
+
+<!--
+There once was a grad at Imperial,
+Who thought we should use less material,
+He modelled in haste,
+Flows of water and waste,
+(Energy, water and waste,)
+To reduce imports from zones extraterratorial.
+
+There once was a grad at Imperial,
+Who thought we should use less material,
+He modelled in haste,
+Reducing water and waste,
+Using programming statements in serial.
+
+Currently his thesis remains ethereal.
+Magesterial.
+-->
+
+## Urbanisation
+<!--
+<q>the world is still in the midst of a sweeping and profound urban transformation that is literally changing the face of the planet.</q>
+-->
+
+```{r trends, echo=FALSE, fig.height = 6, fig.width = 12, fig.align = 'center'}
+#require(ggplot2)
+#require(grid)
+
+data <- read.csv("world_total_urban.csv")
+data <- data[-45, ]
+
+fig.Trends <- ggplot(data, aes(x=Year, y=Value/1e6, linetype=Variable)) +
+  geom_line(size=2) +
+  xlab("Year") +
+  ylab("Population [billions]") +
+  geom_text(data=data[data$Year == 2000, ], aes(label=Variable), hjust = 1.2, size=10) +
+    theme_minimal() +
+    theme(legend.position="none", panel.border=element_blank(), panel.grid=element_blank(), axis.line=element_line(), legend.position="top", text=element_text(size=20), axis.text=element_text(size=20), axis.title.x=element_text(size=30, vjust=-1), axis.title.y=element_text(size=30))
+
+fig.Trends
+```
+<figcaption><centre>UN urbanisation forecasts</centre>
+</figcaption>
+
+--- .class #id 
+
+## Urbanisation
+
+<div style='text-align: center;'>
+<figure>
+  <img src="r4-today.png" alt="urb-cycle" align="center" width="600px"/>
+  <img src="urbanCycle.png" alt="urb-cycle" align="center" width="650px"/>
+</figure>
+</div>
+
+<!--
+<q>We must understand the trade-offs. You can't look at the water and energy sectors in isolation anymore," Rodriguez says. "You need to have constant feedback between the two.<footer>The Guardian</footer></q>
+-->
+
+--- .class #id 
+
+## Environmental strain
+
+<!--
+<div style='text-align: center;'>
+<figure>
+  <img src="overconsumption.png" alt="env-strain" align="center" height="200px"/>
+</figure>
+-->
+<div style='text-align: center;'>
+<figure>
+  <img src="HDI-EF-Urbanisation.png" alt="LSE-cities" align="center" height="500px"/>
+  <figcaption>LSE Cities Report (2012)</figcaption>
+</figure>
+</div>
+
+
+--- &twocol
+
+## Economic stability
+
+\begin{align}
+\mbox{Population growth} = f(\mbox{current population}, \mbox{resource requirements})
+\end{align}
+
+*** =left
+
+<figure>
+  <img src="urban-growth-regimes.png" alt="growth-regimes" align="center" height="300px" />
+  <figcaption>Bettencourt et al (2007)</figcaption>
+</figure>
+
+*** =right
+
+<figure>
+  <img src="bettencourt_innovation.png" alt="collapse" align="center" height="300px"/>
+  <figcaption>Bettencourt et al (2007)</figcaption>
+</figure>
+
+<!--
+![Bettencourt](bettencourt_innovation.png)
+```{r bettencourt, echo=FALSE, fig.height = 6, fig.align = 'center'}
+#Y0 <- 
+#B <- 1.27;
+B <- 0.95;
+B <- 1;
+#R <- 
+#E <- 
+#N <- 
+t <- seq(from=1, to=10, by=0.1);
+N <- (10*exp(-(1-B)*t))^(1/(1-B));
+#plot(t,N)
+tN <- data.frame(t,N)
+	
+#fig.urbPop <- ggplot(tN, aes(x=t, y=N, linetype=Variable)) +
+fig.urbPop <- ggplot(tN, aes(x=t, y=N)) +
+  geom_line() +
+  xlab("Time") +
+  ylab("Population") +
+  theme_minimal() +
+  theme(legend.position="none", panel.border=element_blank(), panel.grid=element_blank(), axis.line=element_line(), legend.position="top")
+
+fig.urbPop
+```
+-->
+
+
+
+--- &twocol
+
+## Opportunities
+
+*** =left
+
+Co-location of infrastructure:
+
+1. Cascading
+   	- CHP
+	- Energy from waste/biomass
+	- Water reuse
+2. Decentralisation
+	- Grey water reuse
+	- Local generation
+	- Solar PV
+
+*** =right
+
+<figure>
+  <img src="linearMetabolism.png" width="500px"/>
+</figure>
+
+<figure>
+  <img src="circularMetabolism.png" alt="circ-met" align="center" width="500px"/>
+<figcaption><centre>Future Cities Laboratory</centre>
+</figcaption>
+</figure>
+
+--- &twocol
+
+## Existing models ...
+
+*** =left
+
+  <img src="energy-network.png" alt="shannGu-network" width="450px"/>
+
+*** =right
+
+  <img src="water-network.png" alt="shannGu-network" width="450px"/>
+
+--- .class #id 
+
+## ...but
+
+<div style='text-align: center;'>
+  <img src="shannGu-network.png" alt="shannGu-network" width="400px"/>
+  </div>
+
+--- .class #id 
+
+## Urban metabolism
+
+<div style='text-align: center;'>
+<figure>
+  <img src="urb-met.png" alt="circ-met" align="center" width="700px"/>
+  <figcaption>Duvigneaud and Denaeyer-De Smet (1977)</figcaption>
+</figure>
+</div>
+
+
+
+--- .quote
+
+<q> By how much can urban metabolism be improved through models which optimise the integrated provision of energy, water and waste?,</q>
+
+--- .class #id 
+
+## (<font color="red">Non</font>)linearity
+
+|        | Conversion    | Transport |
+|--------|---------------|-----------|
+| Energy | Dispatchable  | Elec      |
+|        | End use       | Gas       |
+|        | <font color="red">Renewables</font>    | <font color="red">Heat</font>      |
+| Water  | <font color="red">Pump/Dam</font>      | <font color="red">Friction</font>  |
+|        | <font color="red">Contamination</font> |           |
+| Waste  | Dispatchable  | <font color="red">Wastewater</font>     |
+|        | <font color="red">Treatment</font>     |           |
+
+--- &twocol
+
+## Modelling
+
+
+$$\mbox{production} = \sum_{\mbox{processes}} \mbox{resource ratio} \times \mbox{process rate}$$
+
+
+*** =left
+
+```
+pump water_in -1
+pump water_out 1
+pump elec_in -98.1
+
+
+```
+<figcaption><centre>Null</centre>
+</figcaption>
+
+<img src="null.png" width="350px"/>
+
+*** =right
+
+```
+pump water_in mass -1
+pump water_in energy 0
+pump water_out mass 1
+pump water_out energy 98.1
+pump elec_in -98.1
+```
+<figcaption><centre>PRaQ</centre>
+</figcaption>
+
+  <img src="PRaQ.png" width="400px"/>
+
+---
+
+
+```{r methods, echo=FALSE, fig.height = 6, fig.width = 12, fig.align = 'center'}
+library(ggplot2)
+library(grid)
+library(reshape)
+
+theme_tom <- theme_minimal() + theme(
+  legend.title=element_blank(), 
+  panel.border=element_blank(), 
+  panel.grid=element_blank(),
+  axis.line=element_line(), 
+  legend.position='top')
+
+data_combo <- read.csv('combo_results_reduced.csv')
+
+names(data_combo)[c(2,4,6,8)] <- c('null', 
+				   'PRaQ (all variables)', 
+				   'PRaQ', 
+				   'nonlinear')
+
+variables <- melt(data_combo, id = c(1,3,5,7), measured = 1:8)
+resources <- melt(data_combo, id = c(2,4,6,8), measured = 1:8)
+combo <- data.frame(variables$variable, variables$value, resources$variable, resources$value)
+
+combo[combo == 'PRaQ (all variables)'] <- NA
+combo[combo == 'nonlinear'] <- NA
+data_reduced <- na.omit(combo)
+
+ggplot(data_reduced, aes(x=resources.value, y=variables.value, linetype=variables.variable)) +
+  geom_line(size=2) +
+  xlab('Resources') +
+  ylab('Variables') +
+  theme_tom +
+  theme(text=element_text(size=20), axis.text=element_text(size=20), axis.title.x=element_text(size=30, vjust=-1), axis.title.y=element_text(size=30), legend.key.size=unit(2,"lines"))
+```
+
+--- &twocol
+
+## Case study: Shann Gu
+
+$$\mbox{imports} + \mbox{production} = \mbox{exports} + \mbox{demand}$$
+
+*** =left
+
+<img src="shannGu-network.png" alt="shannGu-network" width="360px"/>
+
+*** =right
+
+<img src="shannGu-zones.png" alt="shannGu-zones" width="360px"/>
+
+---
+
+## Results
+
+```{r results, echo=FALSE, fig.height = 6, fig.width = 12, fig.align = 'center'}
+data <- read.csv("output.csv")
+
+fig.results <- ggplot(data, aes(x=indicator/1e9, y=cost/1e9)) +
+  geom_line(size=2) +
+  xlab("Direct material consumption [billion kg]") +
+  ylab("Cost [billion $]") +
+    theme_minimal() +
+    theme(legend.position="none", panel.border=element_blank(), panel.grid=element_blank(), axis.line=element_line(), legend.position="top", axis.text=element_text(size=20), axis.title=element_text(size=30))
+
+fig.results
+```
+
+--- .class #id 
+
+## Future work
+
+- Explore nonlinear options
+- Develop case study
+	- add resource storage
+	- finer spatial and temporal discretisation
+- Build pre- and post-processors
+- Relate to urban metabolism literature
+
+--- bg:black
